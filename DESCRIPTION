@@ -1,0 +1,9 @@
+Package: ggspell
+Type: Package
+Title: Spell Check ggplot and Text Objects
+Version: 0.1.0
+Author: Nicu Calcea
+Description: What it says on the tin.
+License: GNU General Public License v3.0
+Encoding: UTF-8
+LazyData: true
