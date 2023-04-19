@@ -44,6 +44,7 @@ ggspell_text <- function(text, language = "auto") {
   text <- gsub("<div.*?div>", "", text)
   text <- gsub("<.*?>", "", text)
   text <- gsub("\n  ", " ", text)
+  text <- gsub("%", "", text) # for some reason, the API doesn't like the % sign
 
   proof <- httr::POST(url = "https://api.languagetool.org/v2/check",
                       body = paste0('text="', text, '"&language=', language)) |>
