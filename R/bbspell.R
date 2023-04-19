@@ -21,11 +21,11 @@
 # ggspell(starwars_plot)
 #'
 #' @export
-ggspell <- function(x, language = "auto") {
+ggspell <- function(x, language = "auto", level = "default") {
   if (ggplot2::is.ggplot(x)) {
-    ggspell_plot(x, language = language)
+    ggspell_plot(x, language = language, level = level)
   } else if (is.character(x)) {
-    ggspell_text(x, language = language)
+    ggspell_text(x, language = language, level = level)
   } else {
     warning("Your object couldn't be spellchecked because it's not text or a ggplot.")
   }
@@ -36,7 +36,7 @@ ggspell <- function(x, language = "auto") {
 ##                       Spellcheck text                       ##
 #################################################################
 
-ggspell_text <- function(text, language = "auto") {
+ggspell_text <- function(text, language = "auto", level = "default") {
 
   # Clean up nasty HTML
   text <- gsub("<iframe.*?iframe>", "", text)
@@ -47,7 +47,7 @@ ggspell_text <- function(text, language = "auto") {
   text <- gsub("%", "%25", text) # apparently % needs to be encoded
 
   proof <- httr::POST(url = "https://api.languagetool.org/v2/check",
-                      body = paste0('text="', text, '"&language=', language)) |>
+                      body = paste0('text="', text, '"&language=', language, '"&level=', level)) |>
     httr::content()
 
   proof <- proof$matches |>
@@ -76,7 +76,7 @@ ggspell_text <- function(text, language = "auto") {
 ##                        Spellcheck plots                       -
 ##----------------------------------------------------------------
 
-ggspell_plot <- function(ggobject, language = "auto") {
+ggspell_plot <- function(ggobject, language = "auto", level = "default") {
 
   # Extract annotations and geom_text
   annotations <- sapply(ggobject[["layers"]], function(x) x[["aes_params"]][["label"]])
@@ -92,6 +92,6 @@ ggspell_plot <- function(ggobject, language = "auto") {
 
   if (length(labels) > 0) {
     paste(labels, collapse = "\n") |>
-      ggspell(language = language)
+      ggspell(language = language, level - level)
   }
 }
