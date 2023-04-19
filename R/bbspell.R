@@ -22,7 +22,7 @@
 #'
 #' @export
 ggspell <- function(x, language = "auto") {
-  if (is.ggplot(x)) {
+  if (ggplot2::is.ggplot(x)) {
     ggspell_plot(x, language = language)
   } else if (is.character(x)) {
     ggspell_text(x, language = language)
@@ -46,7 +46,7 @@ ggspell_text <- function(text, language = "auto") {
   text <- gsub("\n  ", " ", text)
 
   proof <- httr::POST(url = "https://api.languagetool.org/v2/check",
-                      body = paste0('text=', text, '&language=', language)) |>
+                      body = paste0('text="', text, '"&language=', language)) |>
     httr::content()
 
   proof <- proof$matches |>
@@ -94,18 +94,3 @@ ggspell_plot <- function(ggobject, language = "auto") {
       ggspell(language = language)
   }
 }
-
-
-# starwars <- dplyr::starwars |>
-#   head(10) |>
-#   ggplot(aes(x = height, y = name)) +
-#   geom_col() +
-#   geom_text(x = 168.7, y = 10, label = "Firstannotation") +
-#   labs(
-#     title = "This an title mispeling some words",
-#     subtitle = "The subtitle has also erors ,like"
-#   ) +
-#   bbplot2::reith_style()
-#
-# autograph::spellcheck(starwars_plot)
-
