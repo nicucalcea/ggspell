@@ -4,7 +4,7 @@
 #'
 #' @param x The text or ggplot object you want to spell check.
 #' @param language Defaults to auto, but you can specify (en-GB, de-DE, fr)
-#' @param ... Any other [parameters supported by the API](https://languagetool.org/http-api/#/default).
+#' @param ... Any other \href{https://languagetool.org/http-api/#/default}{parameters supported by the API}.
 #'
 #' @examples
 #' ggspell("This is a error.")
