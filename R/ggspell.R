@@ -52,8 +52,6 @@ ggspell_text <- function(text, language = "auto", ...) {
     ...
   )
 
-  print(data)
-
   proof <- httr::POST(url = "https://api.languagetool.org/v2/check",
                       body = data, encode = "form") |>
     httr::content()
