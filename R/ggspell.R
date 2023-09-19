@@ -63,18 +63,31 @@ ggspell_text <- function(text, language = "auto", ...) {
 
   if (length(proof) > 0) {
     proof <- proof |>
-      dplyr::mutate(word = substring(text, offset + 1, offset + length))
+      dplyr::mutate(word = substring("This an title mispeling some words", offset + 1, offset + length))
 
     for (i in 1:nrow(proof)) {
-      message(paste0(i, ": ",
-                     proof[[i, "message"]],
-                     ' — "',
-                     substring(proof$context[[i]]$text,
-                               proof$context[[i]]$offset + 1,
-                               proof$context[[i]]$offset + proof$context[[i]]$length),
-                     '" in "',
-                     proof$context[[i]]$text, '"'))
-    }
+
+      sentence <- proof$context[[i]]$text
+
+      error_message <- proof[[i, "message"]]
+      cat(paste0("—— ", error_message, " ——\n"))
+
+      mistake <- substring(sentence,
+                           proof$context[[i]]$offset + 1,
+                           proof$context[[i]]$offset + proof$context[[i]]$length)
+
+      correct_spelling <- proof$replacements[[i]][[1]] |> unlist()
+
+      sentence_without_start <- substring(sentence,
+                                          0,
+                                          proof$context[[i]]$offset)
+      sentence_without_end <-  substring(sentence,
+                                         proof$context[[i]]$offset + proof$context[[i]]$length + 1,
+                                         nchar(sentence))
+      cat(paste0(crayon::red("✗  "), sentence_without_start, crayon::red(mistake), sentence_without_end, "\n"))
+      cat(paste0(crayon::green("✓  "), sentence_without_start, crayon::green(correct_spelling), sentence_without_end, "\n\n"))
+
+      }
   }
 }
 
