@@ -49,6 +49,7 @@ ggspell_text <- function(text, language = "auto", ...) {
   data = list(
     `text` = text,
     `language` = language,
+    `enabledOnly` = "false",
     ...
   )
 
@@ -97,7 +98,7 @@ ggspell_plot <- function(ggobject, language = "auto", ...) {
   labels <- labels[lengths(labels) != 0] # remove NAs
 
   if (length(labels) > 0) {
-    paste(labels, collapse = "\n") |>
-      ggspell(language = language, ...)
+    ggspell_text(paste0(labels, collapse = "\n"),
+            language = language, ...)
   }
 }
