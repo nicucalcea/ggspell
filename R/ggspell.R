@@ -70,7 +70,8 @@ ggspell_text <- function(text, language = "auto", ...) {
       sentence <- proof$context[[i]]$text
 
       error_message <- proof[[i, "message"]]
-      cat(paste0("—— ", error_message, " ——\n"))
+
+      cli::cli_h1(error_message)
 
       mistake <- substring(sentence,
                            proof$context[[i]]$offset + 1,
@@ -84,9 +85,9 @@ ggspell_text <- function(text, language = "auto", ...) {
       sentence_without_end <-  substring(sentence,
                                          proof$context[[i]]$offset + proof$context[[i]]$length + 1,
                                          nchar(sentence))
-      cat(paste0(crayon::red("✗  "), sentence_without_start, crayon::red(mistake), sentence_without_end, "\n"))
-      cat(paste0(crayon::green("✓  "), sentence_without_start, crayon::green(correct_spelling), sentence_without_end, "\n\n"))
 
+      cli::cli_alert_danger(paste0(sentence_without_start, cli::col_red(mistake), sentence_without_end))
+      cli::cli_alert_success(paste0(sentence_without_start, cli::col_green(correct_spelling), sentence_without_end))
       }
   }
 }

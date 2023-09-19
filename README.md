@@ -16,9 +16,13 @@ Use like this for text.
 ggspell::ggspell("This is a error.")
 ```
 
-    ## —— Use “an” instead of ‘a’ if the following word starts with a vowel sound, e.g. ‘an article’, ‘an hour’. ——
-    ## ✗  This is a error.
-    ## ✓  This is an error.
+    ## 
+
+    ## ── Use “an” instead of ‘a’ if the following word starts with a vowel sound, e.g.
+
+    ## ✖ This is a error.
+
+    ## ✔ This is an error.
 
 Or check an entire plot.
 
@@ -35,26 +39,50 @@ starwars_plot <- dplyr::starwars |>
 ggspell::ggspell(starwars_plot)
 ```
 
-    ## —— A verb may be missing. ——
-    ## ✗  This an title mispeling some words The subti...
-    ## ✓  This is an title mispeling some words The subti...
     ## 
-    ## —— Use “a” instead of ‘an’ if the following word doesn’t start with a vowel sound, e.g. ‘a sentence’, ‘a university’. ——
-    ## ✗  This an title mispeling some words The subtitle...
-    ## ✓  This a title mispeling some words The subtitle...
+
+    ## ── A verb may be missing. ──────────────────────────────────────────────────────
+
+    ## ✖ This an title mispeling some words The subti...
+
+    ## ✔ This is an title mispeling some words The subti...
+
     ## 
-    ## —— Possible spelling mistake found. ——
-    ## ✗  This an title mispeling some words The subtitle has also erors ...
-    ## ✓  This an title misspelling some words The subtitle has also erors ...
+
+    ## ── Use “a” instead of ‘an’ if the following word doesn’t start with a vowel soun
+
+    ## ✖ This an title mispeling some words The subtitle...
+
+    ## ✔ This a title mispeling some words The subtitle...
+
     ## 
-    ## —— Possible spelling mistake found. ——
-    ## ✗  ...peling some words The subtitle has also erors ,like Firstannotation
-    ## ✓  ...peling some words The subtitle has also errors ,like Firstannotation
+
+    ## ── Possible spelling mistake found. ────────────────────────────────────────────
+
+    ## ✖ This an title mispeling some words The subtitle has also erors ...
+
+    ## ✔ This an title misspelling some words The subtitle has also erors ...
+
     ## 
-    ## —— Put a space after the comma, but not before the comma. ——
-    ## ✗  ...g some words The subtitle has also erors ,like Firstannotation
-    ## ✓  ...g some words The subtitle has also erors, like Firstannotation
+
+    ## ── Possible spelling mistake found. ────────────────────────────────────────────
+
+    ## ✖ ...peling some words The subtitle has also erors ,like Firstannotation
+
+    ## ✔ ...peling some words The subtitle has also errors ,like Firstannotation
+
     ## 
-    ## —— Possible spelling mistake found. ——
-    ## ✗  ...words The subtitle has also erors ,like Firstannotation
-    ## ✓  ...words The subtitle has also erors ,like First annotation
+
+    ## ── Put a space after the comma, but not before the comma. ──────────────────────
+
+    ## ✖ ...g some words The subtitle has also erors ,like Firstannotation
+
+    ## ✔ ...g some words The subtitle has also erors, like Firstannotation
+
+    ## 
+
+    ## ── Possible spelling mistake found. ────────────────────────────────────────────
+
+    ## ✖ ...words The subtitle has also erors ,like Firstannotation
+
+    ## ✔ ...words The subtitle has also erors ,like First annotation
