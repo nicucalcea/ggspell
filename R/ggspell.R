@@ -35,7 +35,6 @@ ggspell <- function(x, language = "auto", ...) {
 #################################################################
 ##                       Spellcheck text                       ##
 #################################################################
-
 ggspell_text <- function(text, language = "auto", ...) {
 
   # Clean up nasty HTML
@@ -62,12 +61,10 @@ ggspell_text <- function(text, language = "auto", ...) {
     tidyr::unnest_wider(1)
 
   if (length(proof) > 0) {
-    proof <- proof |>
-      dplyr::mutate(word = substring("This an title mispeling some words", offset + 1, offset + length))
 
     for (i in 1:nrow(proof)) {
 
-      sentence <- proof$context[[i]]$text
+      sentence <- gsub("\r", "\n", proof$context[[i]]$text)
 
       error_message <- proof[[i, "message"]]
 
@@ -96,13 +93,10 @@ ggspell_text <- function(text, language = "auto", ...) {
 ##----------------------------------------------------------------
 ##                        Spellcheck plots                       -
 ##----------------------------------------------------------------
-
 ggspell_plot <- function(ggobject, language = "auto", ...) {
 
   # Extract annotations and geom_text
   annotations <- sapply(ggobject[["layers"]], function(x) x[["aes_params"]][["label"]])
-  # annotations[lengths(annotations) != 0] |>
-  #   paste(collapse = "\n")
 
   # Extract title, subtitle and alt text
   labels <- ggobject$labels[c("title", "subtitle", "alt")]
@@ -112,7 +106,7 @@ ggspell_plot <- function(ggobject, language = "auto", ...) {
   labels <- labels[lengths(labels) != 0] # remove NAs
 
   if (length(labels) > 0) {
-    ggspell_text(paste0(labels, collapse = "\n"),
+    ggspell_text(paste0(labels, collapse = "\r"),
             language = language, ...)
   }
 }
