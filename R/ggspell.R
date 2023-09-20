@@ -45,6 +45,7 @@ ggspell_text <- function(text, language = "auto", ...) {
   text <- gsub("\n  ", " ", text)
   text <- gsub("%", "%25", text) # apparently % needs to be encoded
 
+  # Prepare data for the API call
   data = list(
     `text` = text,
     `language` = language,
@@ -52,10 +53,12 @@ ggspell_text <- function(text, language = "auto", ...) {
     ...
   )
 
+  # Call API
   proof <- httr::POST(url = "https://api.languagetool.org/v2/check",
                       body = data, encode = "form") |>
     httr::content()
 
+  # Turn into a tibble
   proof <- proof$matches |>
     tibble::tibble() |>
     tidyr::unnest_wider(1)
@@ -64,6 +67,7 @@ ggspell_text <- function(text, language = "auto", ...) {
 
     for (i in 1:nrow(proof)) {
 
+      # Replace \r with \n for the console output
       sentence <- gsub("\r", "\n", proof$context[[i]]$text)
 
       error_message <- proof[[i, "message"]]
