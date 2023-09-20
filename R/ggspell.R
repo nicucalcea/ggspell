@@ -80,15 +80,18 @@ ggspell_text <- function(text, language = "auto", ...) {
 
       correct_spelling <- proof$replacements[[i]][[1]] |> unlist()
 
-      sentence_without_start <- substring(sentence,
-                                          0,
-                                          proof$context[[i]]$offset)
-      sentence_without_end <-  substring(sentence,
-                                         proof$context[[i]]$offset + proof$context[[i]]$length + 1,
-                                         nchar(sentence))
+      sentence_start <- substring(sentence,
+                                  0,
+                                  proof$context[[i]]$offset) |>
+        stringr::str_replace_all(".*\\n", "") # remove everything before and including \n
 
-      cli::cli_alert_danger(paste0(sentence_without_start, cli::col_red(mistake), sentence_without_end))
-      cli::cli_alert_success(paste0(sentence_without_start, cli::col_green(correct_spelling), sentence_without_end))
+      sentence_end <-  substring(sentence,
+                                 proof$context[[i]]$offset + proof$context[[i]]$length + 1,
+                                 nchar(sentence)) |>
+        stringr::str_replace_all("\\n.*$", "") # remove everything after and including \n
+
+      cli::cli_alert_danger(paste0(sentence_start, cli::col_red(mistake), sentence_end))
+      cli::cli_alert_success(paste0(sentence_start, cli::col_green(correct_spelling), sentence_end))
       }
   }
 }

@@ -43,46 +43,46 @@ ggspell::ggspell(starwars_plot)
 
     ## ── A verb may be missing. ──────────────────────────────────────────────────────
 
-    ## ✖ This an title mispeling some words The subti...
+    ## ✖ This an title mispeling some words
 
-    ## ✔ This is an title mispeling some words The subti...
+    ## ✔ This is an title mispeling some words
 
     ## 
 
     ## ── Use “a” instead of ‘an’ if the following word doesn’t start with a vowel soun
 
-    ## ✖ This an title mispeling some words The subtitle...
+    ## ✖ This an title mispeling some words
 
-    ## ✔ This a title mispeling some words The subtitle...
-
-    ## 
-
-    ## ── Possible spelling mistake found. ────────────────────────────────────────────
-
-    ## ✖ This an title mispeling some words The subtitle has also erors ...
-
-    ## ✔ This an title misspelling some words The subtitle has also erors ...
+    ## ✔ This a title mispeling some words
 
     ## 
 
     ## ── Possible spelling mistake found. ────────────────────────────────────────────
 
-    ## ✖ ...peling some words The subtitle has also erors ,like Firstannotation
+    ## ✖ This an title mispeling some words
 
-    ## ✔ ...peling some words The subtitle has also errors ,like Firstannotation
+    ## ✔ This an title misspelling some words
+
+    ## 
+
+    ## ── Possible spelling mistake found. ────────────────────────────────────────────
+
+    ## ✖  The subtitle has also erors ,like
+
+    ## ✔  The subtitle has also errors ,like
 
     ## 
 
     ## ── Put a space after the comma, but not before the comma. ──────────────────────
 
-    ## ✖ ...g some words The subtitle has also erors ,like Firstannotation
+    ## ✖  The subtitle has also erors ,like
 
-    ## ✔ ...g some words The subtitle has also erors, like Firstannotation
+    ## ✔  The subtitle has also erors, like
 
     ## 
 
     ## ── Possible spelling mistake found. ────────────────────────────────────────────
 
-    ## ✖ ...words The subtitle has also erors ,like Firstannotation
+    ## ✖  Firstannotation
 
-    ## ✔ ...words The subtitle has also erors ,like First annotation
+    ## ✔  First annotation
