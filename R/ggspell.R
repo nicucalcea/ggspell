@@ -78,8 +78,6 @@ ggspell_text <- function(text, language = "auto", ...) {
                            proof$context[[i]]$offset + 1,
                            proof$context[[i]]$offset + proof$context[[i]]$length)
 
-      correct_spelling <- proof$replacements[[i]][[1]] |> unlist()
-
       sentence_start <- substring(sentence,
                                   0,
                                   proof$context[[i]]$offset) |>
@@ -91,7 +89,13 @@ ggspell_text <- function(text, language = "auto", ...) {
         stringr::str_replace_all("\\n.*$", "") # remove everything after and including \n
 
       cli::cli_alert_danger(paste0(sentence_start, cli::col_red(mistake), sentence_end))
-      cli::cli_alert_success(paste0(sentence_start, cli::col_green(correct_spelling), sentence_end))
+
+      # Correct version if it exists
+      if (!is.na(proof$replacements)) {
+        correct_spelling <- proof$replacements[[i]][[1]]$value |> unlist()
+        cli::cli_alert_success(paste0(sentence_start, cli::col_green(correct_spelling), sentence_end))
+      }
+
       }
   }
 }
