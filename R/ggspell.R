@@ -91,7 +91,7 @@ ggspell_text <- function(text, language = "auto", ...) {
       cli::cli_alert_danger(paste0(sentence_start, cli::col_red(mistake), sentence_end))
 
       # Correct version if it exists
-      if (!is.na(proof$replacements)) {
+      if (!is.na(proof$replacements[[i]][[1]])) {
         correct_spelling <- proof$replacements[[i]][[1]]$value |> unlist()
         cli::cli_alert_success(paste0(sentence_start, cli::col_green(correct_spelling), sentence_end))
       }
