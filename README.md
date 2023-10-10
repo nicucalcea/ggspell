@@ -16,13 +16,7 @@ Use like this for text.
 ggspell::ggspell("This is a error.")
 ```
 
-    ## 
-
-    ## ── Use “an” instead of ‘a’ if the following word starts with a vowel sound, e.g.
-
-    ## ✖ This is a error.
-
-    ## ✔ This is an error.
+<img src="README_files/figure-gfm//unnamed-chunk-3.svg" width="100%" />
 
 Or check an entire plot.
 
@@ -39,50 +33,4 @@ starwars_plot <- dplyr::starwars |>
 ggspell::ggspell(starwars_plot)
 ```
 
-    ## 
-
-    ## ── A verb may be missing. ──────────────────────────────────────────────────────
-
-    ## ✖ This an title mispeling some words
-
-    ## ✔ This is an title mispeling some words
-
-    ## 
-
-    ## ── Use “a” instead of ‘an’ if the following word doesn’t start with a vowel soun
-
-    ## ✖ This an title mispeling some words
-
-    ## ✔ This a title mispeling some words
-
-    ## 
-
-    ## ── Possible spelling mistake found. ────────────────────────────────────────────
-
-    ## ✖ This an title mispeling some words
-
-    ## ✔ This an title misspelling some words
-
-    ## 
-
-    ## ── Possible spelling mistake found. ────────────────────────────────────────────
-
-    ## ✖  The subtitle has also erors ,like
-
-    ## ✔  The subtitle has also errors ,like
-
-    ## 
-
-    ## ── Put a space after the comma, but not before the comma. ──────────────────────
-
-    ## ✖  The subtitle has also erors ,like
-
-    ## ✔  The subtitle has also erors, like
-
-    ## 
-
-    ## ── Possible spelling mistake found. ────────────────────────────────────────────
-
-    ## ✖  Firstannotation
-
-    ## ✔  First annotation
+<img src="README_files/figure-gfm//unnamed-chunk-4.svg" width="100%" />

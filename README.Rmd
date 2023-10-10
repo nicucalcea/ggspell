@@ -3,8 +3,20 @@ title: "ggspell"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, include = FALSE, cache = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%",
+  cache = TRUE
+)
+asciicast::init_knitr_engine(
+  echo = TRUE,
+  echo_input = FALSE,
+  startup = quote({
+    library(cli)
+    set.seed(1) })
+)
 ```
 
 Spell check text and ggplot objects with the LanguageTool API.
@@ -17,14 +29,14 @@ remotes::install_github("nicucalcea/ggspell")
 
 Use like this for text.
 
-```{r}
+```{asciicast}
 # Check text
 ggspell::ggspell("This is a error.")
 ```
 
 Or check an entire plot.
 
-```{r}
+```{asciicast}
 # Check plot
 starwars_plot <- dplyr::starwars |>
   head(10) |>
@@ -36,4 +48,3 @@ starwars_plot <- dplyr::starwars |>
 
 ggspell::ggspell(starwars_plot)
 ```
-
