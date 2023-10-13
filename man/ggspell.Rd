@@ -11,13 +11,25 @@ ggspell(x, language = "auto", ...)
 
 \item{language}{Defaults to auto, but you can specify (en-GB, de-DE, fr)}
 
-\item{...}{Any other \href{https://languagetool.org/http-api/#/default}{parameters supported by the API}.}
+\item{...}{Any other \href{https://languagetool.org/http-api/#/default}{parameters supported by the API}. #'}
+}
+\value{
+Prints the result of the spellcheck to the console.
 }
 \description{
 Pass some string into the function and it will spell check it and return the results.
 }
+\details{
+#' Spell check text and graphics
+
+Pass some string into the function and it will spell check it and return the results.
+
+Pass some string into the function and it will spell check it and return the results.
+}
 \examples{
 ggspell("This is a error.")
+library(ggplot2)
+library(dplyr)
 starwars <- dplyr::starwars |>
  head(10) |>
  ggplot(aes(x = height, y = name)) +
@@ -27,6 +39,5 @@ starwars <- dplyr::starwars |>
    title = "This an title mispeling some words",
    subtitle = "The subtitle has also erors ,like"
  )
-
 
 }

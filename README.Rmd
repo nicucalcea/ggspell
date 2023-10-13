@@ -14,7 +14,7 @@ asciicast::init_knitr_engine(
   echo = TRUE,
   echo_input = FALSE,
   startup = quote({
-    library(cli)
+    library(ggspell)
     set.seed(1) })
 )
 ```

@@ -1,13 +1,14 @@
-#' Spell check text and graphics
+#' @#' Spell check text and graphics
 #'
 #' Pass some string into the function and it will spell check it and return the results.
 #'
 #' @param x The text or ggplot object you want to spell check.
 #' @param language Defaults to auto, but you can specify (en-GB, de-DE, fr)
-#' @param ... Any other \href{https://languagetool.org/http-api/#/default}{parameters supported by the API}.
-#'
+#' @param ... Any other \href{https://languagetool.org/http-api/#/default}{parameters supported by the API}. #'
 #' @examples
 #' ggspell("This is a error.")
+#' library(ggplot2)
+#' library(dplyr)
 #' starwars <- dplyr::starwars |>
 #'  head(10) |>
 #'  ggplot(aes(x = height, y = name)) +
@@ -18,9 +19,12 @@
 #'    subtitle = "The subtitle has also erors ,like"
 #'  )
 #'
-# ggspell(starwars_plot)
-#'
 #' @export
+#' @title Spell check text and graphics
+#' @description Pass some string into the function and it will spell check it and return the results.
+#' @return Prints the result of the spellcheck to the console.
+#' @details Pass some string into the function and it will spell check it and return the results.
+#' @rdname ggspell
 ggspell <- function(x, language = "auto", ...) {
   if (ggplot2::is.ggplot(x)) {
     ggspell_plot(x, language = language, ...)
@@ -96,7 +100,7 @@ ggspell_text <- function(text, language = "auto", ...) {
         cli::cli_alert_success(paste0(sentence_start, cli::col_green(correct_spelling), sentence_end))
       }
 
-      }
+    }
   }
 }
 
@@ -118,6 +122,6 @@ ggspell_plot <- function(ggobject, language = "auto", ...) {
 
   if (length(labels) > 0) {
     ggspell_text(paste0(labels, collapse = "\r\n"),
-            language = language, ...)
+                 language = language, ...)
   }
 }
